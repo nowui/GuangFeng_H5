@@ -11,7 +11,30 @@
     },
     methods: {
       handleDetail: function () {
-        this.$router.push('detail');
+//        this.$router.push('detail');
+        this.$http({
+          method: 'POST',
+          url: 'https://api.jiyiguan.nowui.com/product/list',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'token': '',
+            'platform': 'WEB',
+            'version': '1.0.0',
+          },
+          body: JSON.stringify({
+            product_name: '1'
+          })
+        }).then(response => {
+          if (response.body.code == 200) {
+            console.log(response.body.data);
+          } else {
+
+          }
+        }, response => {
+
+        });
+
       }
     }
   }
@@ -34,9 +57,13 @@
     -webkit-animation: circle 60s infinite linear;
   }
 
-  @-webkit-keyframes circle{
-    0%{ transform:rotate(0deg); }
-    100%{ transform:rotate(-360deg); }
+  @-webkit-keyframes circle {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(-360deg);
+    }
   }
 
 </style>
