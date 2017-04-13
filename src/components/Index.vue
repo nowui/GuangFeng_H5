@@ -5,6 +5,9 @@
 </template>
 
 <script>
+  import 'weui';
+  import weui from 'weui.js';
+
   export default {
     data () {
       return {}
@@ -12,27 +15,40 @@
     methods: {
       handleDetail: function () {
 //        this.$router.push('detail');
+
+        let loading = weui.loading('loading', {
+          className: 'custom-classname'
+        });
+
         this.$http({
           method: 'POST',
-          url: 'https://api.jiyiguan.nowui.com/product/list',
+          url: 'http://localhost:8080/guangfeng/save',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
             'token': '',
             'platform': 'WEB',
-            'version': '1.0.0',
+            'version': '1.0.0'
           },
           body: JSON.stringify({
-            product_name: '1'
+            guangfeng_number: '1',
+            guangfeng_name: 'guangfeng_name',
+            guangfeng_phone: 'guangfeng_phone',
+            guangfeng_school: 'guangfeng_school',
+            guangfeng_major: 'guangfeng_major'
           })
         }).then(response => {
-          if (response.body.code == 200) {
-            console.log(response.body.data);
-          } else {
+          loading.hide();
 
+          if (response.body.code == 200) {
+//            console.log(response.body.data);
+          } else {
+            weui.alert("网络发生错误");
           }
         }, response => {
+          loading.hide();
 
+          weui.alert("网络发生错误");
         });
 
       }
@@ -44,7 +60,7 @@
   .index {
     width: 100%;
     height: 100%;
-    background-image: url('../assets/Index.jpg');
+    background-image: url('/static/image/Index.jpg');
     background-repeat: repeat-y;
     background-position: center;
     background-size: contain;
@@ -53,8 +69,8 @@
   .aaa {
     width: 100px;
     height: 100px;
-    background-color: #2c3e50;
-    -webkit-animation: circle 60s infinite linear;
+    /*background-color: #2c3e50;*/
+    /*-webkit-animation: circle 60s infinite linear;*/
   }
 
   @-webkit-keyframes circle {
