@@ -85,26 +85,8 @@ var manifest = [{
 
 var preload = new createjs.LoadQueue();
 preload.loadManifest(manifest);
-preload.on('fileload', handleFileload);
 preload.on('progress', handleProgress);
 preload.on('complete', handComplete);
-
-function handleFileload(event) {
-    if (event.item.ext == 'css') {
-        let head = document.getElementsByTagName('head')[0];
-        let link = document.createElement('link');
-        link.href = event.item.src;
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        head.appendChild(link);
-    } else if (event.item.ext == 'css') {
-        let head = document.getElementsByTagName('head')[0];
-        let script = document.createElement('script');
-        script.src = event.item.src;
-        script.type = 'text/javascript';
-        head.appendChild(script);
-    }
-}
 
 function handleProgress(event) {
     document.getElementById("progressBar").style.width = preload.progress * 100 + "%";
