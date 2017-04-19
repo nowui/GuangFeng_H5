@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Index from '@/components/Index'
-import Detail from '@/components/Detail'
+import Video from '@/components/Video'
 import Vote from '@/components/Vote'
-import Result from '@/components/Result'
-import Share from '@/components/Share'
+import Photo from '@/components/Photo'
 
 Vue.use(Router)
 
@@ -15,21 +14,17 @@ export default new Router({
       name: 'Index',
       component: Index
     }, {
-      path: '/detail',
-      name: 'Detail',
-      component: Detail
+      path: '/video',
+      name: 'Video',
+      component: Video
     }, {
       path: '/vote',
       name: 'Vote',
       component: Vote
     }, {
-      path: '/result',
-      name: 'Result',
-      component: Result
-    }, {
-      path: '/share',
-      name: 'Share',
-      component: Share
+      path: '/photo',
+      name: 'Photo',
+      component: Photo
     }
   ]
 })

@@ -1,56 +1,52 @@
 <template>
-  <div class="index">
-      <div class="logo"></div>
-      <div class="fute"></div>
-      <div class="ouxi"></div>
-      <div class="pinpai" @click="handleVideo()"></div>
-      <div class="jingmei" @click="handlePhoto()"></div>
-      <div class="shijia" @click="handleVote()"></div>
-      <div class="daodian"></div>
-    </div>
+  <div class="video">
+    <div class="logo"></div>
+    <div class="fute"></div>
+    <div class="ouxi"></div>
+    <div class="shijia" @click="handleVote()"></div>
+    <div class="jingmei" @click="handlePhoto()"></div>
+    <div class="back" @click="handleBack()"></div>
+    <video id="video" controls="controls" autoplay="autoplay">
+      <source src="http://ookrw7epp.bkt.clouddn.com/video.mp4" type="video/mp4"/>
+    </video>
+  </div>
 </template>
 
 <script>
-  import 'weui';
-  import weui from 'weui.js';
-
   export default {
     data () {
       return {
-
+        is_play: false
       }
     },
-    created () {
-
-    },
-    mounted () {
-
-    },
-    beforeDestroy () {
-
-    },
     methods: {
-      handleVideo: function () {
-        this.$router.push('video');
-      },
       handlePhoto: function () {
         this.$router.push('photo');
       },
       handleVote: function () {
         this.$router.push('vote');
+      },
+      handleBack: function () {
+        this.$router.push('/');
+      },
+      handlePlay: function () {
+        document.getElementById("video").play();
+      },
+      handleIndex: function () {
+        this.$router.push('/');
       }
     }
   }
 </script>
 
 <style scoped>
-  .index {
+  .video {
     position: absolute;
     top: 0px;
     right: 0px;
     bottom: 0px;
     left: 0px;
-    background-image: url('/static/image/index_bg.jpg');
+    background-image: url('/static/image/video_bg.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -109,14 +105,14 @@
     -webkit-animation-fill-mode: forwards;
   }
 
-  .pinpai {
+  .shijia {
     position: absolute;
-    top: 434px;
+    top: 947px;
     left: 50%;
     margin-left: -350px;
     width: 304px;
     height: 74px;
-    background-image: url('/static/image/pinpai.png');
+    background-image: url('/static/image/shijia_2.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -129,7 +125,7 @@
 
   .jingmei {
     position: absolute;
-    top: 434px;
+    top: 947px;
     left: 50%;
     margin-left: 42px;
     width: 304px;
@@ -145,14 +141,14 @@
     -webkit-animation-fill-mode: forwards;
   }
 
-  .shijia {
+  .back {
     position: absolute;
-    top: 1070px;
+    top: 1150px;
     left: 50%;
-    margin-left: -206px;
-    width: 412px;
-    height: 78px;
-    background-image: url('/static/image/shijia.png');
+    margin-left: -40px;
+    width: 80px;
+    height: 80px;
+    background-image: url('/static/image/back.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -163,22 +159,9 @@
     -webkit-animation-fill-mode: forwards;
   }
 
-  .daodian {
+  #video {
     position: absolute;
-    top: 1200px;
-    left: 50%;
-    margin-left: -206px;
-    width: 412px;
-    height: 19px;
-    background-image: url('/static/image/daodian.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    opacity: 0;
-    -webkit-animation: up 0.5s linear;
-    -webkit-animation-delay: 1.5s;
-    -webkit-animation-iteration-count: 1;
-    -webkit-animation-fill-mode: forwards;
+    top: 400px;
+    width: 100%;
   }
-
 </style>

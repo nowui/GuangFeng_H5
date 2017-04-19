@@ -3,15 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-  <title>广丰</title>
+  <title>福特途睿欧 邀您坐享其程</title>
+  <script src="static/html5media.min.js" type="text/javascript"></script>
   <style type="text/css">
+    body {
+      background: #000000;
+    }
+
     #loading {
       position: absolute;
       top: 0px;
       right: 0px;
       bottom: 0px;
       left: 0px;
-      background: #15152f;
+      background: #000000;
     }
 
     .progress {
@@ -21,8 +26,7 @@
       margin-top: -12px;
       margin-left: -100px;
       width: 200px;
-      height: 25px;
-      background: #262626;
+      background: #188cde;
       padding: 5px;
       overflow: visible;
       border-radius: 20px;
@@ -35,12 +39,13 @@
 
     .progress-bar-info {
       width: 0%;
-      height: 24px;
-      background-color: #5bc0de;
+      height: 20px;
+      background-color: #ffffff;
     }
   </style>
 </head>
 <body>
+<img src='static/image/icon.jpg' style='margin:0 auto;display:none;'/>
 <div id="app"></div>
 <!-- built files will be auto injected -->
 <div id="loading">
@@ -53,20 +58,71 @@
 <script src="static/preloadjs-0.6.2.min.js"></script>
 <script type="text/javascript">
   var manifest = [{
-    src: "static/image/Detail.jpg",
-    id: "Detail.jpg"
+    src: "static/image/back.png",
+    id: "back.png"
   }, {
-    src: "static/image/Index.jpg",
-    id: "Index.jpg"
+    src: "static/image/daodian.png",
+    id: "daodian.png"
   }, {
-    src: "static/image/Result.jpg",
-    id: "Result.jpg"
+    src: "static/image/fute.png",
+    id: "fute.png"
   }, {
-    src: "static/image/Share.jpg",
-    id: "Share.jpg"
+    src: "static/image/index_bg.jpg",
+    id: "index_bg.jpg"
   }, {
-    src: "static/image/Vote.jpg",
-    id: "Vote.jpg"
+    src: "static/image/jingmei.png",
+    id: "jingmei.png"
+  }, {
+    src: "static/image/left.png",
+    id: "left.png"
+  }, {
+    src: "static/image/logo.png",
+    id: "logo.png"
+  }, {
+    src: "static/image/ouxi.png",
+    id: "ouxi.png"
+  }, {
+    src: "static/image/photo_0.jpg",
+    id: "photo_0.jpg"
+  }, {
+    src: "static/image/photo_1.jpg",
+    id: "photo_1.jpg"
+  }, {
+    src: "static/image/photo_2.jpg",
+    id: "photo_2.jpg"
+  }, {
+    src: "static/image/photo_3.jpg",
+    id: "photo_3.jpg"
+  }, {
+    src: "static/image/photo_4.jpg",
+    id: "photo_4.jpg"
+  }, {
+    src: "static/image/photo_bg.jpg",
+    id: "photo_bg.jpg"
+  }, {
+    src: "static/image/pinpai_2.png",
+    id: "pinpai_2.png"
+  }, {
+    src: "static/image/pinpai.png",
+    id: "pinpai.png"
+  }, {
+    src: "static/image/right.png",
+    id: "right.png"
+  }, {
+    src: "static/image/shijia_2.png",
+    id: "shijia_2.png"
+  }, {
+    src: "static/image/shijia.png",
+    id: "shijia.png"
+  }, {
+    src: "static/image/video_bg.jpg",
+    id: "video_bg.jpg"
+  }, {
+    src: "static/image/vote_bg.jpg",
+    id: "vote_bg.jpg"
+  }, {
+    src: "static/image/vote_form.jpg",
+    id: "vote_form.jpg"
   }];
 
   var preload = new createjs.LoadQueue();
@@ -76,21 +132,7 @@
   preload.on('complete', handComplete);
 
   function handleFileload(event) {
-    console.log(event.item);
-    if (event.item.ext == 'css') {
-      let head = document.getElementsByTagName('head')[0];
-      let link = document.createElement('link');
-      link.href = event.item.src;
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      head.appendChild(link);
-    } else if (event.item.ext == 'css') {
-      let head = document.getElementsByTagName('head')[0];
-      let script = document.createElement('script');
-      script.src = event.item.src;
-      script.type = 'text/javascript';
-      head.appendChild(script);
-    }
+
   }
 
   function handleProgress(event) {
@@ -113,4 +155,68 @@
   function handComplete() {
     handHidden(document.getElementById("loading"), 1, -0.01);
   }
+</script>
+<script src="static/zepto.min.js" type="text/javascript"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+  let url = location.href;
+
+  if (url.indexOf('?') > -1) {
+    window.location.href = "http://h5.fute.nowui.com/#/";
+  }
+
+  $.ajax({
+    type: "POST",
+    url: 'http://api.jiyiguan.nowui.com/wechat/share?url=' + url,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'token': '',
+      'platform': 'WEB',
+      'version': '1.0.0'
+    },
+    data: JSON.stringify({}),
+    success: function (data, status, xhr) {
+      wx.config({
+        debug: false,
+        appId: "wx934f793803320ecd",
+        timestamp: data.timestamp,
+        nonceStr: data.nonceStr,
+        signature: data.signature,
+        jsApiList: [
+          'checkJsApi',
+          'onMenuShareTimeline',
+          'onMenuShareAppMessage',
+          'onMenuShareQQ',
+          'onMenuShareWeibo'
+        ]
+      });
+
+      window.share_config = {
+        "share": {
+          "imgUrl": "http://h5.fute.nowui.com/static/image/icon.jpg",
+          "desc": "纯正欧系、非凡商务，与您一起畅享全新移动商务休闲新体验！",
+          "title": '福特途睿欧 邀您坐享其程',
+          "link": window.location.href,
+          "success": function () {
+
+          },
+          'cancel': function () {
+
+          }
+        }
+      };
+      wx.ready(function () {
+        wx.onMenuShareAppMessage(share_config.share);
+        wx.onMenuShareTimeline(share_config.share);
+        wx.onMenuShareQQ(share_config.share);
+      });
+    },
+    error: function (xhr, errorType, error) {
+
+    },
+    complete: function (xhr, status) {
+
+    }
+  });
 </script>
